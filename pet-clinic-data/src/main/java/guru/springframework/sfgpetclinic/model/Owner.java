@@ -65,7 +65,17 @@ public class Owner extends Person {
 
     public Set<Pet> getPets() {
         return pets;
-    }    public Pet getPet(String name, boolean ignoreNew) {
+    }
+
+    public Boolean addPet(Pet pet){
+        if (!pets.contains(pet)){
+            pet.setOwner(this);
+            return pets.add(pet);
+        }
+        return false;
+    }
+
+    public Pet getPet(String name, boolean ignoreNew) {
         name = name.toLowerCase();
         for (Pet pet : pets) {
             if (!ignoreNew || !pet.isNew()) {
